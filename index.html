@@ -25,6 +25,9 @@
 
     .category-container {
       margin: 40px 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .category {
@@ -35,10 +38,15 @@
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      text-align: left;
     }
 
     .category:hover {
       background-color: #dcdcdc;
+    }
+
+    .category input[type="radio"] {
+      margin-right: 10px;
     }
 
     .btn-submit {
@@ -71,12 +79,43 @@
   </header>
 
   <div class="category-container">
-    <div class="category">Living Room</div>
-    <div class="category">Bedroom</div>
-    <div class="category">Kitchen</div>
-    <div class="category">Office</div>
+    <label class="category">
+      <input type="radio" name="category" value="Living Room"> Living Room
+    </label>
+    <label class="category">
+      <input type="radio" name="category" value="Bedroom"> Bedroom
+    </label>
+    <label class="category">
+      <input type="radio" name="category" value="Kitchen"> Kitchen
+    </label>
+    <label class="category">
+      <input type="radio" name="category" value="Office"> Office
+    </label>
   </div>
 
-  <button class="btn-submit">Search Now</button>
+  <button class="btn-submit" onclick="sendWhatsAppMessage()">Search Now</button>
+
+  <script>
+    function sendWhatsAppMessage() {
+      // Get the selected category
+      const selectedCategory = document.querySelector('input[name="category"]:checked');
+
+      if (!selectedCategory) {
+        alert('Please select a category before proceeding!');
+        return;
+      }
+
+      const categoryValue = selectedCategory.value;
+      const message = `Hi, I'm interested in furniture for the ${categoryValue}. Can you help me find something?`;
+
+      // Redirect to WhatsApp with the message
+      const phoneNumber = '254705757661'; // Add your WhatsApp number here (without + or spaces, e.g., 254712345678)
+      const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+    }
+  </script>
+
 </body>
 </html>
