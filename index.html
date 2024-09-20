@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Furniture Finder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      text-align: center;
+    }
+
+    header {
+      background-color: #f8f8f8;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .category-container {
+      margin: 40px 0;
+    }
+
+    .category {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .category:hover {
+      background-color: #dcdcdc;
+    }
+
+    .btn-submit {
+      padding: 15px 30px;
+      margin-top: 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: #218838;
+    }
+
+    @media (max-width: 600px) {
+      .category {
+        display: block;
+        margin: 10px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Furniture Finder</h1>
+  </header>
+
+  <div class="category-container">
+    <div class="category">Living Room</div>
+    <div class="category">Bedroom</div>
+    <div class="category">Kitchen</div>
+    <div class="category">Office</div>
+  </div>
+
+  <button class="btn-submit">Search Now</button>
+</body>
+</html>
