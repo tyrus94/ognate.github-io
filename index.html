@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Furniture Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find Home & Garden Products</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,6 +11,7 @@
       padding: 0;
       background-color: white;
       text-align: center;
+      color: #333;
     }
 
     header {
@@ -20,25 +21,27 @@
     }
 
     h1 {
-      color: #333;
+      margin: 0;
+      font-size: 2em;
     }
 
     .category-container {
-      margin: 40px 0;
+      margin: 40px 20px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
     }
 
     .category {
-      display: inline-block;
+      display: flex;
+      align-items: center;
       padding: 10px 20px;
       margin: 10px;
       background-color: #f0f0f0;
       border-radius: 5px;
       cursor: pointer;
       transition: background-color 0.3s ease;
-      text-align: left;
+      font-size: 1em;
     }
 
     .category:hover {
@@ -47,6 +50,7 @@
 
     .category input[type="radio"] {
       margin-right: 10px;
+      transform: scale(1.2);
     }
 
     .btn-submit {
@@ -57,7 +61,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      font-size: 16px;
+      font-size: 1em;
       transition: background-color 0.3s ease;
     }
 
@@ -65,20 +69,37 @@
       background-color: #218838;
     }
 
+    .info-text {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+
     @media (max-width: 600px) {
       .category {
-        display: block;
-        margin: 10px auto;
+        width: 80%;
+        justify-content: center;
+      }
+
+      .btn-submit {
+        width: 80%;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Furniture Finder</h1>
+    <h1>Find Home & Garden Products</h1>
   </header>
 
   <div class="category-container">
+    <label class="category">
+      <input type="radio" name="category" value="Kitchen"> Kitchen
+    </label>
     <label class="category">
       <input type="radio" name="category" value="Living Room"> Living Room
     </label>
@@ -86,14 +107,18 @@
       <input type="radio" name="category" value="Bedroom"> Bedroom
     </label>
     <label class="category">
-      <input type="radio" name="category" value="Kitchen"> Kitchen
+      <input type="radio" name="category" value="Bathroom"> Bathroom
     </label>
     <label class="category">
-      <input type="radio" name="category" value="Office"> Office
+      <input type="radio" name="category" value="Outdoor"> Outdoor
     </label>
   </div>
 
-  <button class="btn-submit" onclick="sendWhatsAppMessage()">Search Now</button>
+  <button class="btn-submit" onclick="sendWhatsAppMessage()">Find</button>
+
+  <div class="info-text">
+    After clicking "Find", you can upload images of the products you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions based on your selections.
+  </div>
 
   <script>
     function sendWhatsAppMessage() {
@@ -106,16 +131,15 @@
       }
 
       const categoryValue = selectedCategory.value;
-      const message = `Hi, I'm interested in furniture for the ${categoryValue}. Can you help me find something?`;
+      const message = `Hi, I'm interested in products for the ${categoryValue}. I would like to upload images to get recommendations, prices, and shop suggestions.`;
 
       // Redirect to WhatsApp with the message
-      const phoneNumber = '254705757661'; // Add your WhatsApp number here (without + or spaces, e.g., 254712345678)
+      const phoneNumber = '254705757661'; // Replace with your WhatsApp number (e.g., 254712345678)
       const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
       // Open WhatsApp
       window.open(whatsappURL, '_blank');
     }
   </script>
-
 </body>
 </html>
