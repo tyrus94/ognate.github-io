@@ -11,7 +11,7 @@
       color: #333;
       padding: 0;
       margin: 0;
-      text-align: center; /* Center text for header and form */
+      text-align: center;
     }
 
     header {
@@ -26,8 +26,11 @@
     }
 
     .container {
-      display: inline-block; /* Center container */
-      margin-top: 20px; /* Space between header and form */
+      display: block;
+      margin: 20px auto;
+      padding: 20px; /* Added padding for mobile spacing */
+      max-width: 400px; /* Restrict max width for inputs */
+      box-sizing: border-box;
     }
 
     form {
@@ -37,12 +40,11 @@
     select, input, button {
       padding: 10px;
       font-size: 1em;
-      width: 100%;
-      max-width: 400px; /* Limit width */
+      width: 100%; /* Make inputs fill available width */
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 10px; /* Space between inputs */
+      margin-bottom: 15px; /* Space between form elements */
     }
 
     button {
@@ -62,7 +64,7 @@
       font-size: 0.9em;
       color: #555;
       max-width: 600px;
-      margin: 30px auto 0; /* Center text below form */
+      margin: 30px auto 0;
     }
   </style>
 </head>
@@ -84,11 +86,9 @@
       </select>
 
       <input type="text" id="itemName" placeholder="Enter Item Name" required>
-
       <input type="text" id="location" placeholder="Enter Your Location" required>
-
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
-
+      
       <button type="submit">Find</button>
     </form>
 
