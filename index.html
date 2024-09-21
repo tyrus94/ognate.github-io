@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
   <style>
     body {
@@ -19,15 +18,15 @@
     }
 
     .container {
-      width: 80%; /* Adjust this percentage as needed */
-      max-width: 600px; /* Optional: Set a maximum width for larger screens */
+      width: 100%;
+      max-width: 400px;
       padding: 20px;
       box-sizing: border-box;
       text-align: center;
     }
 
     h1 {
-      font-size: 2em; /* Adjust font size as needed */
+      font-size: 1.5em;
       margin-bottom: 20px;
     }
 
@@ -49,8 +48,7 @@
     button {
       background-color: #4CAF50;
       color: white;
-      cursor: pointer;   
-
+      cursor: pointer;
       border: none;
       margin-top: 10px;
     }
@@ -63,22 +61,6 @@
       font-size: 0.9em;
       margin-top: 10px;
       color: #777;
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 1.5em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        padding: 15px;
-      }
-      select, input, button {
-        font-size: 0.9em;
-        padding: 8px;
-      }
     }
   </style>
 </head>
@@ -93,10 +75,8 @@
         <option value="kitchen">Kitchen</option>
         <option value="living room">Living Room</option>
         <option value="bedroom">Bedroom</option>
-        <option value="bathroom">Bathroom</option>   
-
-        <option value="outdoor">Outdoor</option>   
-
+        <option value="bathroom">Bathroom</option>
+        <option value="outdoor">Outdoor</option>
       </select>
 
       <input type="text" id="itemName" placeholder="Enter Item Name" required>
@@ -108,13 +88,12 @@
       <button type="submit">Submit</button>
     </form>
 
-    <p>After submitting, you'll be redirected to WhatsApp. Please upload an image of the product you're looking for in the chat, and we'll send you recommendations, prices, and shop information.</p>
+    <p>After clicking "FIND", you can share a picture of the product. We'll provide you with personalized recommendations, prices, and shop suggestions based on your inquiry.</p>
   </div>
 
   <script>
     document.getElementById('inquiryForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form submission   
-
+      event.preventDefault(); // Prevent form submission
 
       // Collect form data
       const category = document.getElementById('category').value;
