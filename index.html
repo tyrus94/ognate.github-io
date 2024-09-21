@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
   <style>
-    /* Styles from your original code */
     body {
       font-family: Arial, sans-serif;
       background-color: white;
       color: #333;
       padding: 0;
       margin: 0;
+      text-align: center; /* Center text for header and form */
     }
 
     header {
       background-color: #f8f8f8;
       padding: 20px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      text-align: center;
     }
 
     h1 {
@@ -27,11 +26,8 @@
     }
 
     .container {
-      width: 100%;
-      max-width: 400px;
-      padding: 20px;
-      box-sizing: border-box;
-      text-align: center;
+      display: inline-block; /* Center container */
+      margin-top: 20px; /* Space between header and form */
     }
 
     form {
@@ -42,9 +38,11 @@
       padding: 10px;
       font-size: 1em;
       width: 100%;
+      max-width: 400px; /* Limit width */
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
+      margin-bottom: 10px; /* Space between inputs */
     }
 
     button {
@@ -52,8 +50,7 @@
       color: white;
       cursor: pointer;
       border: none;
-      margin-top: 20px;
-      padding: 15px 30px;
+      padding: 15px;
     }
 
     button:hover {
@@ -65,15 +62,7 @@
       font-size: 0.9em;
       color: #555;
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 20px;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 15px;
-      }
+      margin: 30px auto 0; /* Center text below form */
     }
   </style>
 </head>
@@ -100,7 +89,8 @@
 
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
 
-      <button type="submit">Find</button> </form>
+      <button type="submit">Find</button>
+    </form>
 
     <p class="info-text">
       After clicking "Find", you can upload a picture of the product you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions.
@@ -124,8 +114,8 @@
 
       // Construct WhatsApp message
       const message = `Hello! I'm looking for the following:\n\n` +
-                     `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
-                     `Please send me recommendations.`;
+                      `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
+                      `Please send me recommendations.`;
 
       // Redirect to WhatsApp
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
