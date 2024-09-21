@@ -112,8 +112,8 @@
 
       <p>Do you have a picture of what you are looking for?</p>
       <div class="button-container">
-        <button type="button" id="yesButton" disabled>Yes</button>
-        <button type="button" id="noButton" disabled>No</button>
+        <button type="button" id="yesButton">Yes</button>
+        <button type="button" id="noButton">No</button>
       </div>
     </form>
 
@@ -139,12 +139,23 @@
     }
 
     yesButton.addEventListener('click', function() {
-      handleButtonClick(true);
+      validateForm(true);
     });
 
     noButton.addEventListener('click', function() {
-      handleButtonClick(false);
+      validateForm(false);
     });
+
+    function validateForm(hasPicture) {
+      const missingFields = formFields.filter(field => document.getElementById(field).value.trim() === "");
+      
+      if (missingFields.length > 0) {
+        alert(`Please fill out the following field(s): ${missingFields.join(', ')}`);
+        return;
+      }
+
+      handleButtonClick(hasPicture);
+    }
 
     function handleButtonClick(hasPicture) {
       // Collect form data
