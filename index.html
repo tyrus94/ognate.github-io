@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -101,8 +102,8 @@
 
       <p>Do you have a picture of what you are looking for?</p>
       <div class="button-container">
-        <button type="submit" id="yesButton" onclick="setPrefillMessage(true)">Yes</button>
-        <button type="submit" id="noButton" onclick="setPrefillMessage(false)">No</button>
+        <button type="button" id="yesButton" onclick="setPrefillMessage(true)">Yes</button>
+        <button type="button" id="noButton" onclick="setPrefillMessage(false)">No</button>
       </div>
     </form>
 
@@ -112,8 +113,23 @@
   </div>
 
   <script>
+    // Validate form inputs
+    function validateForm() {
+      const category = document.getElementById('category').value;
+      const itemName = document.getElementById('itemName').value;
+      const location = document.getElementById('location').value;
+      const budget = document.getElementById('budget').value;
+      if (!category || !itemName || !location || !budget) {
+        alert('Please fill in all the fields.');
+        return false;
+      }
+      return true;
+    }
+
     // Setting a custom message for WhatsApp redirection
     function setPrefillMessage(hasPicture) {
+      if (!validateForm()) return;
+
       const category = document.getElementById('category').value;
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
@@ -130,51 +146,10 @@
 
       // Prefill WhatsApp message
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
-      document.getElementById('inquiryForm').action = whatsappURL;
+      
+      // Redirect to WhatsApp
+      window.location.href = whatsappURL;
     }
-
-    // Custom validation messages
-    function validateForm() {
-      const itemName = document.getElementById('itemName');
-      const category = document.getElementById('category');
-      const location = document.getElementById('location');
-      const budget = document.getElementById('budget');
-      let valid = true;
-
-      // Reset custom validation messages
-      itemName.setCustomValidity('');
-      category.setCustomValidity('');
-      location.setCustomValidity('');
-      budget.setCustomValidity('');
-
-      // Set custom validation messages for missing fields
-      if (!category.value) {
-        category.setCustomValidity('Please select a Category.');
-        valid = false;
-      }
-      if (!itemName.value) {
-        itemName.setCustomValidity('Please fill out the Item Name.');
-        valid = false;
-      }
-      if (!location.value) {
-        location.setCustomValidity('Please fill out the Location.');
-        valid = false;
-      }
-      if (!budget.value) {
-        budget.setCustomValidity('Please fill out the Budget.');
-        valid = false;
-      }
-
-      return valid;
-    }
-
-    // Attach event listener for form validation
-    document.getElementById('inquiryForm').addEventListener('submit', function(event) {
-      if (!validateForm()) {
-        // Prevent form submission if validation fails
-        event.preventDefault();
-      }
-    });
   </script>
 </body>
 </html>
