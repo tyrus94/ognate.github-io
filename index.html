@@ -45,7 +45,7 @@
     form {
       margin-top: 20px;
     }
-    select, input, button {
+    select, input {
       padding: 10px;
       font-size: 1em;
       width: 100%;
@@ -54,24 +54,21 @@
       border-radius: 5px;
       margin-bottom: 15px;
     }
-    .checkbox {
+    .button-container {
       display: flex;
-      align-items: center;
+      justify-content: space-between;
       margin-bottom: 15px;
-      padding-left: 0;
     }
-    .checkbox input {
-      margin-right: 5px;
-    }
-    button {
+    .button-container button {
+      flex: 1;
+      margin: 0 5px;
+      padding: 15px;
       background-color: #4CAF50;
       color: white;
-      cursor: pointer;
       border: none;
-      margin-top: 20px;
-      padding: 15px 30px;
+      cursor: pointer;
     }
-    button:hover {
+    .button-container button:hover {
       background-color: #45a049;
     }
     .info-text {
@@ -86,6 +83,9 @@
     @media (max-width: 600px) {
       .container {
         padding: 15px;
+      }
+      .button-container button {
+        padding: 12px; /* Smaller padding for smaller screens */
       }
     }
   </style>
@@ -111,51 +111,48 @@
       <input type="text" id="location" placeholder="Enter Your Location" required>
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
 
-      <!-- Checkbox container to align checkbox and label side by side -->
-      <div class="checkbox">
-        <input type="checkbox" id="imageConfirm">
-        <label for="imageConfirm">I have a picture of what I am looking for.</label>
+      <p>Do you have a picture of what you are looking for?</p>
+      <div class="button-container">
+        <button type="button" id="yesButton">Yes</button>
+        <button type="button" id="noButton">No</button>
       </div>
-
-      <button type="submit">Find</button>
     </form>
 
     <p class="info-text">
-      After clicking "Find", share a picture of the product you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions.
+      After clicking "Yes" or "No", you'll be directed to chat. We'll provide personalized recommendations, prices, and shop suggestions.
     </p>
   </div>
 
   <script>
-    document.getElementById('inquiryForm').addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent form submission
+    document.getElementById('yesButton').addEventListener('click', function() {
+      handleButtonClick('yes');
+    });
 
+    document.getElementById('noButton').addEventListener('click', function() {
+      handleButtonClick('no');
+    });
+
+    function handleButtonClick(hasPicture) {
       // Collect form data
       const category = document.getElementById('category').value;
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
-      const imageConfirm = document.getElementById('imageConfirm');
 
       if (!category) {
         alert("Please select a category.");
         return;
       }
 
-      // Check if the checkbox is checked
-      if (!imageConfirm.checked) {
-        alert("Please confirm you have a picture of what you are looking for.");
-        return;
-      }
-
       // Construct WhatsApp message
       const message = `Hello! I'm looking for the following:\n\n` +
-                     `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
-                     `I have a picture of the item I'm looking for. Please send me recommendations.`;
+                      `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
+                      `I have a picture of the item I'm looking for: ${hasPicture}. Please send me recommendations.`;
 
       // Redirect to WhatsApp
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
       window.location.href = whatsappURL;
-    });
+    }
   </script>
 </body>
 </html>
