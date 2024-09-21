@@ -57,12 +57,11 @@
     .checkbox {
       display: flex;
       align-items: center;
-      text-align: left;
       margin-bottom: 15px;
-      padding-left: 0; /* No extra padding */
+      padding-left: 0;
     }
     .checkbox input {
-      margin-right: 5px; /* Minimal space between checkbox and label */
+      margin-right: 5px;
     }
     button {
       background-color: #4CAF50;
@@ -114,7 +113,7 @@
 
       <!-- Checkbox container to align checkbox and label side by side -->
       <div class="checkbox">
-        <input type="checkbox" id="imageConfirm" required>
+        <input type="checkbox" id="imageConfirm">
         <label for="imageConfirm">I have a picture of what I am looking for.</label>
       </div>
 
@@ -135,14 +134,15 @@
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
-      const imageConfirm = document.getElementById('imageConfirm').checked;
+      const imageConfirm = document.getElementById('imageConfirm');
 
       if (!category) {
         alert("Please select a category.");
         return;
       }
 
-      if (!imageConfirm) {
+      // Check if the checkbox is checked
+      if (!imageConfirm.checked) {
         alert("Please confirm you have a picture of what you are looking for.");
         return;
       }
