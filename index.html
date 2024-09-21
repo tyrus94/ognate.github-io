@@ -4,67 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWC29DXTGJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RWC29DXTGJ');
+  </script>
+  <!-- End Google Analytics -->
+
   <style>
+    /* Your styles here */
     body {
       font-family: Arial, sans-serif;
       background-color: white;
       color: #333;
       padding: 0;
       margin: 0;
-      text-align: center;
     }
-
     header {
       background-color: #f8f8f8;
       padding: 20px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
-
     h1 {
       margin: 0;
       font-size: 2em;
     }
-
     .container {
-      display: block;
-      margin: 20px auto;
-      padding: 20px; /* Added padding for mobile spacing */
-      max-width: 400px; /* Restrict max width for inputs */
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
       box-sizing: border-box;
+      text-align: center;
+      margin: 0 auto;
     }
-
     form {
       margin-top: 20px;
     }
-
     select, input, button {
       padding: 10px;
       font-size: 1em;
-      width: 100%; /* Make inputs fill available width */
+      width: 100%;
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 15px; /* Space between form elements */
+      margin-bottom: 15px;
     }
-
     button {
       background-color: #4CAF50;
       color: white;
       cursor: pointer;
       border: none;
-      padding: 15px;
+      margin-top: 20px;
+      padding: 15px 30px;
     }
-
     button:hover {
       background-color: #45a049;
     }
-
     .info-text {
       margin-top: 30px;
       font-size: 0.9em;
       color: #555;
       max-width: 600px;
-      margin: 30px auto 0;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
     }
   </style>
 </head>
@@ -88,12 +102,12 @@
       <input type="text" id="itemName" placeholder="Enter Item Name" required>
       <input type="text" id="location" placeholder="Enter Your Location" required>
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
-      
+
       <button type="submit">Find</button>
     </form>
 
     <p class="info-text">
-      After clicking "Find", share a picture of the product you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions.
+      After clicking "Find", you can upload a picture of the product you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions.
     </p>
   </div>
 
@@ -114,8 +128,8 @@
 
       // Construct WhatsApp message
       const message = `Hello! I'm looking for the following:\n\n` +
-                      `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
-                      `Please send me recommendations.`;
+                     `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
+                     `Please send me recommendations.`;
 
       // Redirect to WhatsApp
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
