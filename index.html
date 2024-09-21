@@ -112,8 +112,8 @@
 
       <p>Do you have a picture of what you are looking for?</p>
       <div class="button-container">
-        <button type="button" id="yesButton">Yes</button>
-        <button type="button" id="noButton">No</button>
+        <button type="submit" id="yesButton" onclick="setPrefillMessage(true)">Yes</button>
+        <button type="submit" id="noButton" onclick="setPrefillMessage(false)">No</button>
       </div>
     </form>
 
@@ -123,48 +123,13 @@
   </div>
 
   <script>
-    // Enable buttons only if the form is filled out
-    const formFields = ['category', 'itemName', 'location', 'budget'];
-    const yesButton = document.getElementById('yesButton');
-    const noButton = document.getElementById('noButton');
-
-    formFields.forEach(field => {
-      document.getElementById(field).addEventListener('input', toggleButtons);
-    });
-
-    function toggleButtons() {
-      const allFilled = formFields.every(field => document.getElementById(field).value.trim() !== "");
-      yesButton.disabled = !allFilled;
-      noButton.disabled = !allFilled;
-    }
-
-    yesButton.addEventListener('click', function() {
-      validateForm(true);
-    });
-
-    noButton.addEventListener('click', function() {
-      validateForm(false);
-    });
-
-    function validateForm(hasPicture) {
-      const missingFields = formFields.filter(field => document.getElementById(field).value.trim() === "");
-      
-      if (missingFields.length > 0) {
-        alert(`Please fill out the following field(s): ${missingFields.join(', ')}`);
-        return;
-      }
-
-      handleButtonClick(hasPicture);
-    }
-
-    function handleButtonClick(hasPicture) {
-      // Collect form data
+    // Setting a custom message for WhatsApp redirection
+    function setPrefillMessage(hasPicture) {
       const category = document.getElementById('category').value;
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
 
-      // Construct WhatsApp message
       const pictureText = hasPicture ? "I have a picture of the item I'm looking for." : "I don't have a picture of the item.";
       const message = `Hello! I'm looking for the following:\n\n` +
                       `Category: ${category}\n` +
@@ -174,9 +139,9 @@
                       `${pictureText}\n\n` +
                       `Please send me recommendations.`;
 
-      // Redirect to WhatsApp
+      // Prefill WhatsApp message
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
-      window.location.href = whatsappURL;
+      document.getElementById('inquiryForm').action = whatsappURL;
     }
   </script>
 </body>
