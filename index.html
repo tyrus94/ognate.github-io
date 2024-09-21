@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
-  
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWC29DXTGJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-RWC29DXTGJ');
   </script>
   <!-- End Google Analytics -->
@@ -113,8 +112,8 @@
 
       <p>Do you have a picture of what you are looking for?</p>
       <div class="button-container">
-        <button type="button" id="yesButton">Yes</button>
-        <button type="button" id="noButton">No</button>
+        <button type="button" id="yesButton" disabled>Yes</button>
+        <button type="button" id="noButton" disabled>No</button>
       </div>
     </form>
 
@@ -124,12 +123,27 @@
   </div>
 
   <script>
-    document.getElementById('yesButton').addEventListener('click', function() {
-      handleButtonClick('yes');
+    // Enable buttons only if the form is filled out
+    const formFields = ['category', 'itemName', 'location', 'budget'];
+    const yesButton = document.getElementById('yesButton');
+    const noButton = document.getElementById('noButton');
+
+    formFields.forEach(field => {
+      document.getElementById(field).addEventListener('input', toggleButtons);
     });
 
-    document.getElementById('noButton').addEventListener('click', function() {
-      handleButtonClick('no');
+    function toggleButtons() {
+      const allFilled = formFields.every(field => document.getElementById(field).value.trim() !== "");
+      yesButton.disabled = !allFilled;
+      noButton.disabled = !allFilled;
+    }
+
+    yesButton.addEventListener('click', function() {
+      handleButtonClick(true);
+    });
+
+    noButton.addEventListener('click', function() {
+      handleButtonClick(false);
     });
 
     function handleButtonClick(hasPicture) {
@@ -139,15 +153,15 @@
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
 
-      if (!category) {
-        alert("Please select a category.");
-        return;
-      }
-
       // Construct WhatsApp message
+      const pictureText = hasPicture ? "I have a picture of the item I'm looking for." : "I don't have a picture of the item.";
       const message = `Hello! I'm looking for the following:\n\n` +
-                      `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
-                      `I have a picture of the item I'm looking for: ${hasPicture}. Please send me recommendations.`;
+                      `Category: ${category}\n` +
+                      `Item: ${itemName}\n` +
+                      `Location: ${location}\n` +
+                      `Budget: ${budget}\n\n` +
+                      `${pictureText}\n\n` +
+                      `Please send me recommendations.`;
 
       // Redirect to WhatsApp
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
