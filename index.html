@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
   <style>
+    /* Styles from your original code */
     body {
       font-family: Arial, sans-serif;
       background-color: white;
@@ -30,37 +31,33 @@
       margin-bottom: 20px;
     }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+    /* Styles from the provided code (improvements) */
+    .info-text {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+      max-width: 600px;
+      padding: 0 20px;
     }
 
-    select, input, button {
-      padding: 10px;
-      font-size: 1em;
-      width: 100%;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
+    /* Additional styles for button and inputs */
     button {
-      background-color: #4CAF50;
+      background-color: #4CAF50; /* Corrected button color */
       color: white;
       cursor: pointer;
       border: none;
       margin-top: 10px;
+      padding: 15px 30px; /* Adjusted padding for better spacing */
     }
 
-    button:hover {
-      background-color: #45a049;
+    input {
+      margin-bottom: 10px; /* Added margin-bottom for spacing */
     }
 
-    p {
-      font-size: 0.9em;
-      margin-top: 10px;
-      color: #777;
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px; /* Adjust padding for smaller screens */
+      }
     }
   </style>
 </head>
@@ -88,7 +85,9 @@
       <button type="submit">Submit</button>
     </form>
 
-    <p>After clicking "FIND", you can share a picture of the product. We'll provide you with personalized recommendations, prices, and shop suggestions based on your inquiry.</p>
+    <p class="info-text">
+      After submitting, you can upload a picture of the product you're looking for in the chat. We'll send you recommendations, prices, and shop information.
+    </p>
   </div>
 
   <script>
