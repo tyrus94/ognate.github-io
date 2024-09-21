@@ -31,27 +31,25 @@
       margin-bottom: 20px;
     }
 
-    /* Styles from the provided code (improvements) */
-    .info-text {
-      margin-top: 30px;
-      font-size: 0.9em;
-      color: #555;
-      max-width: 600px;
-      padding: 0 20px;
+    select, input, button {
+      padding: 10px;
+      font-size: 1em;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    /* Additional styles for button and inputs */
     button {
-      background-color: #4CAF50; /* Corrected button color */
+      background-color: #4CAF50;
       color: white;
       cursor: pointer;
       border: none;
       margin-top: 10px;
-      padding: 15px 30px; /* Adjusted padding for better spacing */
     }
 
-    input {
-      margin-bottom: 10px; /* Added margin-bottom for spacing */
+    button:hover {
+      background-color: #45a049;
     }
 
     @media (max-width: 600px) {
@@ -85,9 +83,7 @@
       <button type="submit">Submit</button>
     </form>
 
-    <p class="info-text">
-      After submitting, you can upload a picture of the product you're looking for in the chat. We'll send you recommendations, prices, and shop information.
-    </p>
+    <p>After submitting, you can upload a picture of the product you're looking for in the chat. We'll send you recommendations, prices, and shop information.</p>
   </div>
 
   <script>
