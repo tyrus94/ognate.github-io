@@ -55,14 +55,14 @@
       margin-bottom: 15px;
     }
     .checkbox {
-      text-align: left;
       display: flex;
       align-items: center;
+      text-align: left;
       margin-bottom: 15px;
-      padding-left: 2px; /* Matches the left padding of the input boxes */
+      padding-left: 0; /* No extra padding */
     }
     .checkbox input {
-      margin-right: 10px;
+      margin-right: 5px; /* Minimal space between checkbox and label */
     }
     button {
       background-color: #4CAF50;
@@ -143,7 +143,7 @@
       }
 
       if (!imageConfirm) {
-        alert("Please confirm you have a picture of the item.");
+        alert("Please confirm you have a picture of what you are looking for.");
         return;
       }
 
