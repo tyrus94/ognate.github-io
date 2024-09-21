@@ -12,10 +12,18 @@
       color: #333;
       padding: 0;
       margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    }
+
+    header {
+      background-color: #f8f8f8;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2em;
     }
 
     .container {
@@ -26,9 +34,8 @@
       text-align: center;
     }
 
-    h1 {
-      font-size: 1.5em;
-      margin-bottom: 20px;
+    form {
+      margin-top: 20px;
     }
 
     select, input, button {
@@ -45,25 +52,38 @@
       color: white;
       cursor: pointer;
       border: none;
-      margin-top: 10px;
+      margin-top: 20px;
+      padding: 15px 30px;
     }
 
     button:hover {
       background-color: #45a049;
     }
 
+    .info-text {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+
     @media (max-width: 600px) {
       .container {
-        padding: 15px; /* Adjust padding for smaller screens */
+        padding: 15px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
+  <header>
     <h1>Find Home & Garden Products</h1>
+  </header>
 
+  <div class="container">
     <form id="inquiryForm">
       <select id="category" required>
         <option value="">Select Category</option>
@@ -80,10 +100,11 @@
 
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
 
-      <button type="submit">Submit</button>
-    </form>
+      <button type="submit">Find</button> </form>
 
-    <p>After submitting, you can upload a picture of the product you're looking for in the chat. We'll send you recommendations, prices, and shop information.</p>
+    <p class="info-text">
+      After clicking "Find", you can upload a picture of the product you're looking for. We'll provide you with personalized recommendations, prices, and shop suggestions.
+    </p>
   </div>
 
   <script>
@@ -107,10 +128,9 @@
                      `Please send me recommendations.`;
 
       // Redirect to WhatsApp
-      const whatsappURL = `https://wa.me/<YOUR_NUMBER>?text=${encodeURIComponent(message)}`;
+      const whatsappURL = `https://wa.me/0705757661?text=${encodeURIComponent(message)}`;
       window.location.href = whatsappURL;
     });
   </script>
-
 </body>
 </html>
