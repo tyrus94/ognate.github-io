@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Home & Garden Products</title>
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-RWC29DXTGJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-RWC29DXTGJ');
+  </script>
+  <!-- End Google Analytics -->
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -113,16 +123,30 @@
   </div>
 
   <script>
-    // Validate form inputs
+    // Validate form inputs with field-specific alerts
     function validateForm() {
       const category = document.getElementById('category').value;
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
-      if (!category || !itemName || !location || !budget) {
-        alert('Please fill in all the fields.');
+
+      if (!category) {
+        alert('Please select a category.');
         return false;
       }
+      if (!itemName) {
+        alert('Please enter the item name.');
+        return false;
+      }
+      if (!location) {
+        alert('Please enter your location.');
+        return false;
+      }
+      if (!budget) {
+        alert('Please enter your budget.');
+        return false;
+      }
+      
       return true;
     }
 
@@ -146,7 +170,7 @@
 
       // Prefill WhatsApp message
       const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
-      
+
       // Redirect to WhatsApp
       window.location.href = whatsappURL;
     }
