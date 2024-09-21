@@ -9,35 +9,48 @@
             font-family: Arial, sans-serif;
             background-color: white;
             color: #333;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
             padding: 20px;
+            box-sizing: border-box;
             text-align: center;
         }
 
         h1 {
+            font-size: 1.5em;
             margin-bottom: 20px;
         }
 
         form {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            gap: 10px;
         }
 
-        input, select {
+        select, input, button {
             padding: 10px;
-            width: 80%;
-            max-width: 400px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
         button {
-            padding: 10px 20px;
             background-color: #4CAF50;
             color: white;
-            border: none;
             cursor: pointer;
-            width: 80%;
-            max-width: 400px;
+            border: none;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -46,41 +59,77 @@
 
         p {
             font-size: 0.9em;
+            margin-top: 10px;
+            color: #777;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            select, input, button {
+                font-size: 0.9em;
+                padding: 8px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <h1>Find Home & Garden Products</h1>
-    
-    <form id="inquiryForm">
-        <!-- Item Name -->
-        <input type="text" id="itemName" placeholder="Enter Item Name" required>
+    <div class="container">
+        <h1>Find Home & Garden Products</h1>
+        
+        <form id="inquiryForm">
+            <!-- Dropdown for Categories -->
+            <select id="category" required>
+                <option value="">Select Category</option>
+                <option value="kitchen">Kitchen</option>
+                <option value="living room">Living Room</option>
+                <option value="bedroom">Bedroom</option>
+                <option value="bathroom">Bathroom</option>
+                <option value="outdoor">Outdoor</option>
+            </select>
 
-        <!-- Location -->
-        <input type="text" id="location" placeholder="Enter Your Location" required>
+            <!-- Item Name -->
+            <input type="text" id="itemName" placeholder="Enter Item Name" required>
 
-        <!-- Budget -->
-        <input type="number" id="budget" placeholder="Enter Your Budget" required>
+            <!-- Location -->
+            <input type="text" id="location" placeholder="Enter Your Location" required>
 
-        <!-- Submit Button -->
-        <button type="submit">Submit</button>
-    </form>
+            <!-- Budget -->
+            <input type="number" id="budget" placeholder="Enter Your Budget" required>
 
-    <p>After submitting, you'll be redirected to WhatsApp. Please upload an image of the product you're looking for in the chat, and we'll send you recommendations, prices, and shop information.</p>
+            <!-- Submit Button -->
+            <button type="submit">Submit</button>
+        </form>
+
+        <p>After submitting, you'll be redirected to WhatsApp. Please upload an image of the product you're looking for in the chat, and we'll send you recommendations, prices, and shop information.</p>
+    </div>
 
     <script>
         document.getElementById('inquiryForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent form submission
 
             // Collect form data
+            const category = document.getElementById('category').value;
             const itemName = document.getElementById('itemName').value;
             const location = document.getElementById('location').value;
             const budget = document.getElementById('budget').value;
 
+            if (!category) {
+                alert("Please select a category.");
+                return;
+            }
+
             // Construct WhatsApp message
             const message = `Hello! I'm looking for the following:\n\n` +
-                            `Item: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
+                            `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
                             `Please send me recommendations.`;
 
             // Redirect to WhatsApp
