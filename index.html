@@ -87,11 +87,11 @@
     <form id="inquiryForm">
       <select id="category" required>
         <option value="">Select Category</option>
-        <option value="kitchen">Kitchen</option>
+        <option value="kitchen">Kitchen & Dining</option>
         <option value="living room">Living Room</option>
-        <option value="bedroom">Bedroom</option>
+        <option value="bedroom">Bedroom & Storage</option>
         <option value="bathroom">Bathroom</option>
-        <option value="outdoor">Outdoor</option>
+        <option value="outdoor">Outdoor & Garden</option>
       </select>
 
       <input type="text" id="itemName" placeholder="Enter Item Name" required>
@@ -128,7 +128,7 @@
                      `Please send me recommendations.`;
 
       // Redirect to WhatsApp
-      const whatsappURL = `https://wa.me/0705757661?text=${encodeURIComponent(message)}`;
+      const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
       window.location.href = whatsappURL;
     });
   </script>
