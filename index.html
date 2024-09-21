@@ -51,7 +51,7 @@
       box-sizing: border-box;
       border: 1px solid #ccc;
       border-radius: 5px;
-      margin-bottom: 15px;
+      margin-bottom: 5px; /* Reduced space for validation messages */
     }
     .button-container {
       display: flex;
@@ -79,6 +79,12 @@
       margin-right: auto;
       padding: 0 20px;
     }
+    .validation-message {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 5px;
+      display: none; /* Hidden by default */
+    }
     @media (max-width: 600px) {
       .container {
         padding: 15px;
@@ -105,10 +111,16 @@
         <option value="bathroom">Bathroom</option>
         <option value="outdoor">Outdoor & Garden</option>
       </select>
+      <div class="validation-message" id="categoryError">Please select a category.</div>
 
       <input type="text" id="itemName" placeholder="Enter Item Name" required>
+      <div class="validation-message" id="itemNameError">Please fill out Item Name.</div>
+
       <input type="text" id="location" placeholder="Enter Your Location" required>
+      <div class="validation-message" id="locationError">Please fill out Your Location.</div>
+
       <input type="number" id="budget" placeholder="Enter Your Budget" required>
+      <div class="validation-message" id="budgetError">Please fill out Your Budget.</div>
 
       <p>Do you have a picture of what you are looking for?</p>
       <div class="button-container">
@@ -123,56 +135,57 @@
   </div>
 
   <script>
-    // Validate form inputs with field-specific alerts
-    function validateForm() {
-      const category = document.getElementById('category').value;
-      const itemName = document.getElementById('itemName').value;
-      const location = document.getElementById('location').value;
-      const budget = document.getElementById('budget').value;
-
-      if (!category) {
-        alert('Please select a category.');
-        return false;
-      }
-      if (!itemName) {
-        alert('Please enter the item name.');
-        return false;
-      }
-      if (!location) {
-        alert('Please enter your location.');
-        return false;
-      }
-      if (!budget) {
-        alert('Please enter your budget.');
-        return false;
-      }
-      
-      return true;
-    }
-
-    // Setting a custom message for WhatsApp redirection
     function setPrefillMessage(hasPicture) {
-      if (!validateForm()) return;
-
       const category = document.getElementById('category').value;
       const itemName = document.getElementById('itemName').value;
       const location = document.getElementById('location').value;
       const budget = document.getElementById('budget').value;
 
-      const pictureText = hasPicture ? "I have a picture of the item I'm looking for." : "I don't have a picture of the item.";
-      const message = `Hello! I'm looking for the following:\n\n` +
-                      `Category: ${category}\n` +
-                      `Item: ${itemName}\n` +
-                      `Location: ${location}\n` +
-                      `Budget: ${budget}\n\n` +
-                      `${pictureText}\n\n` +
-                      `Please send me recommendations.`;
+      // Validate fields
+      let valid = true;
+      if (!category) {
+        document.getElementById('categoryError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('categoryError').style.display = 'none';
+      }
 
-      // Prefill WhatsApp message
-      const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
+      if (!itemName) {
+        document.getElementById('itemNameError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('itemNameError').style.display = 'none';
+      }
 
-      // Redirect to WhatsApp
-      window.location.href = whatsappURL;
+      if (!location) {
+        document.getElementById('locationError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('locationError').style.display = 'none';
+      }
+
+      if (!budget) {
+        document.getElementById('budgetError').style.display = 'block';
+        valid = false;
+      } else {
+        document.getElementById('budgetError').style.display = 'none';
+      }
+
+      // Only proceed if all fields are valid
+      if (valid) {
+        const pictureText = hasPicture ? "I have a picture of the item I'm looking for." : "I don't have a picture of the item.";
+        const message = `Hello! I'm looking for the following:\n\n` +
+                        `Category: ${category}\n` +
+                        `Item: ${itemName}\n` +
+                        `Location: ${location}\n` +
+                        `Budget: ${budget}\n\n` +
+                        `${pictureText}\n\n` +
+                        `Please send me recommendations.`;
+
+        // Prefill WhatsApp message
+        const whatsappURL = `https://wa.me/+254705757661?text=${encodeURIComponent(message)}`;
+        window.location.href = whatsappURL; // Redirect to WhatsApp
+      }
     }
   </script>
 </body>
