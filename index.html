@@ -1,159 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Home & Garden Products</title>
-    
-    <!-- Favicon Links -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+
+  <title>Find Home & Garden Products</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
       background-color: white;
-      text-align: center;
       color: #333;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    header {
-      background-color: #f8f8f8;
+    .container {
+      width: 80%; /* Adjust this percentage as needed */
+      max-width: 600px; /* Optional: Set a maximum width for larger screens */
       padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      text-align: center;
     }
 
     h1 {
-      margin: 0;
-      font-size: 2em;
+      font-size: 2em; /* Adjust font size as needed */
+      margin-bottom: 20px;
     }
 
-    .category-container {
-      margin: 40px 20px;
+    form {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .category {
-      display: flex;
-      align-items: center;
-      padding: 10px 20px;
-      margin: 10px;
-      background-color: #f0f0f0;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    select, input, button {
+      padding: 10px;
       font-size: 1em;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
     }
 
-    .category:hover {
-      background-color: #dcdcdc;
-    }
-
-    .category input[type="radio"] {
-      margin-right: 10px;
-      transform: scale(1.2);
-    }
-
-    .btn-submit {
-      padding: 15px 30px;
-      margin-top: 20px;
-      background-color: #28a745;
+    button {
+      background-color: #4CAF50;
       color: white;
+      cursor: pointer;   
+
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
     }
 
-    .btn-submit:hover {
-      background-color: #218838;
+    button:hover {
+      background-color: #45a049;
     }
 
-    .info-text {
-      margin-top: 30px;
+    p {
       font-size: 0.9em;
-      color: #555;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 20px;
+      margin-top: 10px;
+      color: #777;
     }
 
-    @media (max-width: 600px) {
-      .category {
-        width: 80%;
-        justify-content: center;
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5em;
       }
+    }
 
-      .btn-submit {
-        width: 80%;
+    @media (max-width: 480px) {
+      .container {
+        padding: 15px;
+      }
+      select, input, button {
+        font-size: 0.9em;
+        padding: 8px;
       }
     }
   </style>
 </head>
 <body>
-  <header>
+
+  <div class="container">
     <h1>Find Home & Garden Products</h1>
-  </header>
-        
-        <form id="inquiryForm">
-            <!-- Dropdown for Categories -->
-            <select id="category" required>
-                <option value="">Select Category</option>
-                <option value="kitchen">Kitchen & Dining</option>
-                <option value="living room">Living Room</option>
-                <option value="bedroom">Bedroom & Storage</option>
-                <option value="bathroom">Bathroom</option>
-                <option value="outdoor">Outdoor& Garden</option>
-            </select>
 
-            <!-- Item Name -->
-            <input type="text" id="itemName" placeholder="Enter Item Name" required>
+    <form id="inquiryForm">
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="kitchen">Kitchen</option>
+        <option value="living room">Living Room</option>
+        <option value="bedroom">Bedroom</option>
+        <option value="bathroom">Bathroom</option>   
 
-            <!-- Location -->
-            <input type="text" id="location" placeholder="Enter Your Location" required>
+        <option value="outdoor">Outdoor</option>   
 
-            <!-- Budget -->
-            <input type="number" id="budget" placeholder="Enter Your Budget" required>
+      </select>
 
-            <!-- Submit Button -->
-            <button type="submit">FIND</button>
-        </form>
+      <input type="text" id="itemName" placeholder="Enter Item Name" required>
 
-        <p>After clicking "FIND", you can share an image of the product. We'll provide you with personalized recommendations, prices, and shop suggestions based on your inquiry.</p>
-    </div>
+      <input type="text" id="location" placeholder="Enter Your Location" required>
 
-    <script>
-        document.getElementById('inquiryForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+      <input type="number" id="budget" placeholder="Enter Your Budget" required>
 
-            // Collect form data
-            const category = document.getElementById('category').value;
-            const itemName = document.getElementById('itemName').value;
-            const location = document.getElementById('location').value;
-            const budget = document.getElementById('budget').value;
+      <button type="submit">Submit</button>
+    </form>
 
-            if (!category) {
-                alert("Please select a category.");
-                return;
-            }
+    <p>After submitting, you'll be redirected to WhatsApp. Please upload an image of the product you're looking for in the chat, and we'll send you recommendations, prices, and shop information.</p>
+  </div>
 
-            // Construct WhatsApp message
-            const message = `Hello! I'm looking for the following:\n\n` +
-                            `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
-                            `Please send me recommendations.`;
+  <script>
+    document.getElementById('inquiryForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission   
 
-            // Redirect to WhatsApp
-            const whatsappURL = `https://wa.me/0705757661?text=${encodeURIComponent(message)}`;
-            window.location.href = whatsappURL;
-        });
-    </script>
+
+      // Collect form data
+      const category = document.getElementById('category').value;
+      const itemName = document.getElementById('itemName').value;
+      const location = document.getElementById('location').value;
+      const budget = document.getElementById('budget').value;
+
+      if (!category) {
+        alert("Please select a category.");
+        return;
+      }
+
+      // Construct WhatsApp message
+      const message = `Hello! I'm looking for the following:\n\n` +
+                     `Category: ${category}\nItem: ${itemName}\nLocation: ${location}\nBudget: ${budget}\n` +
+                     `Please send me recommendations.`;
+
+      // Redirect to WhatsApp
+      const whatsappURL = `https://wa.me/<YOUR_NUMBER>?text=${encodeURIComponent(message)}`;
+      window.location.href = whatsappURL;
+    });
+  </script>
 
 </body>
 </html>
